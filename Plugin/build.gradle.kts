@@ -33,7 +33,7 @@ blossom {
 tasks.withType<ShadowJar> {
     destinationDirectory.set(file("../target"))
 
-    archiveBaseName.set("LibreLoginProd")
+    archiveBaseName.set("LibreLogin")
     archiveClassifier = null
 
     dependencies {

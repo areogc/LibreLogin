@@ -7,5 +7,5 @@ pluginManagement {
     }
 }
 
-rootProject.name = "LibreLoginProd"
+rootProject.name = "LibreLogin"
 include("Plugin", "API")

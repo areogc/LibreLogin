@@ -55,7 +55,7 @@ On Paper, players will be spawned on the world spawn.
 
 The servers/worlds player should be sent to when they are authenticated. THE SERVERS MUST BE REGISTERED IN THE PROXY CONFIG. IN CASE OF PAPER, THE WORLDS MUST EXIST.
 The configuration allows configuring forced hosts; the servers/worlds in "root" are used when players do not connect from a forced host. Use § instead of dots.
-See: https://github.com/Navio1430/LibreLoginProd/wiki/Configuring-Servers
+See: https://github.com/areogc/LibreLogin/wiki/Configuring-Servers
 """,
                     ConfigurateHelper::getServerMap);
 
@@ -77,7 +77,7 @@ Sometimes this may not work as expected. In such case, you can enable this optio
     public static final ConfigurationKey<String> DEFAULT_CRYPTO_PROVIDER =
             new ConfigurationKey<>(
                     "default-crypto-provider",
-                    "BCrypt-2A",
+                    "Argon-2ID",
                     """
 The default crypto provider. This is used for hashing passwords. Available Providers:
 SHA-256 - Older, not recommended. Kept for compatibility reasons.
@@ -140,7 +140,7 @@ OVERWRITE - Overwrite the offline profile's data with the online profile's data.
                     "CRACKED",
                     """
 Sets which method should be used for creating fixed UUID when a new player is created.
-See the wiki for further information: https://github.com/Navio1430/LibreLoginProd/wiki/UUID-Creators
+See the wiki for further information: https://github.com/areogc/LibreLogin/wiki/UUID-Creators
 Available Creators:
 RANDOM - Generates a random UUID
 CRACKED - Generates a UUID based on the player's name, the same method as if the server was in offline mode
@@ -209,7 +209,7 @@ librelogin-sqlite - SQLite database, default file is "database.db", you can chan
                     "migration",
                     """
 This is used for migrating the database from other plugins.
-Please see the wiki for further information: https://github.com/Navio1430/LibreLoginProd/wiki/Database-Migration
+Please see the wiki for further information: https://github.com/areogc/LibreLogin/wiki/Database-Migration
 """);
 
     public static final ConfigurationKey<Boolean> MIGRATION_ON_NEXT_STARTUP =
@@ -267,7 +267,7 @@ librelogin-sqlite - Can convert from SQLite LibreLogin, useful for migrating to 
 This section is used for 2FA configuration.
 !! YOU MUST HAVE PROTOCOLIZE INSTALLED FOR THIS TO WORK !!
 
-You can find more information on the wiki: https://github.com/Navio1430/LibreLoginProd/wiki/2FA
+You can find more information on the wiki: https://github.com/areogc/LibreLogin/wiki/2FA
 """);
 
     public static final ConfigurationKey<Boolean> TOTP_ENABLED =
@@ -276,7 +276,7 @@ You can find more information on the wiki: https://github.com/Navio1430/LibreLog
                     true,
                     """
 Should we enable TOTP-Based Two-Factor Authentication? If you don't know what this is, this is the 2FA used in applications like Google Authenticator etc.
-I heavily suggest you to read this wiki page: https://github.com/Navio1430/LibreLoginProd/wiki/2FA
+I heavily suggest you to read this wiki page: https://github.com/areogc/LibreLogin/wiki/2FA
 """,
                     ConfigurateHelper::getBoolean);
 
