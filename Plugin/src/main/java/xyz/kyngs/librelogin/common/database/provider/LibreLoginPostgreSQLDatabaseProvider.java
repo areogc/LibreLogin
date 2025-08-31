@@ -25,7 +25,7 @@ public class LibreLoginPostgreSQLDatabaseProvider extends LibreLoginSQLDatabaseP
                 connection
                         .prepareStatement(
                                 "SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS WHERE"
-                                    + " TABLE_NAME='librepremium_data' and TABLE_SCHEMA='public'")
+                                    + " TABLE_NAME='authentication' and TABLE_SCHEMA='public'")
                         .executeQuery();
 
         var columns = new ArrayList<String>();
@@ -43,6 +43,6 @@ public class LibreLoginPostgreSQLDatabaseProvider extends LibreLoginSQLDatabaseP
 
     @Override
     protected String addUnique(String column) {
-        return "CREATE UNIQUE INDEX %s_index ON librepremium_data(%s)".formatted(column, column);
+        return "CREATE UNIQUE INDEX %s_index ON authentication(%s)".formatted(column, column);
     }
 }

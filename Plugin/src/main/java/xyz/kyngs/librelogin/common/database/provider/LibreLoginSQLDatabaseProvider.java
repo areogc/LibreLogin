@@ -37,7 +37,7 @@ public abstract class LibreLoginSQLDatabaseProvider
                 connection -> {
                     var ps =
                             connection.prepareStatement(
-                                    "SELECT * FROM librepremium_data WHERE ip=?");
+                                    "SELECT * FROM authentication WHERE ip=?");
 
                     ps.setString(1, ip);
 
@@ -62,7 +62,7 @@ public abstract class LibreLoginSQLDatabaseProvider
                 connection -> {
                     var ps =
                             connection.prepareStatement(
-                                    "SELECT * FROM librepremium_data WHERE"
+                                    "SELECT * FROM authentication WHERE"
                                             + " LOWER(last_nickname)=LOWER(?)");
 
                     ps.setString(1, name);
@@ -78,7 +78,7 @@ public abstract class LibreLoginSQLDatabaseProvider
         plugin.reportMainThread();
         return connector.runQuery(
                 connection -> {
-                    var ps = connection.prepareStatement("SELECT * FROM librepremium_data");
+                    var ps = connection.prepareStatement("SELECT * FROM authentication");
 
                     var rs = ps.executeQuery();
 
@@ -101,7 +101,7 @@ public abstract class LibreLoginSQLDatabaseProvider
                 connection -> {
                     var ps =
                             connection.prepareStatement(
-                                    "SELECT * FROM librepremium_data WHERE uuid=?");
+                                    "SELECT * FROM authentication WHERE uuid=?");
 
                     ps.setString(1, uuid.toString());
 
@@ -118,7 +118,7 @@ public abstract class LibreLoginSQLDatabaseProvider
                 connection -> {
                     var ps =
                             connection.prepareStatement(
-                                    "SELECT * FROM librepremium_data WHERE premium_uuid=?");
+                                    "SELECT * FROM authentication WHERE premium_uuid=?");
 
                     ps.setString(1, uuid.toString());
 
@@ -162,7 +162,7 @@ public abstract class LibreLoginSQLDatabaseProvider
                 connection -> {
                     var ps =
                             connection.prepareStatement(
-                                    "INSERT INTO librepremium_data(uuid, premium_uuid,"
+                                    "INSERT INTO authentication(uuid, premium_uuid,"
                                         + " hashed_password, salt, algo, last_nickname, joined,"
                                         + " last_seen, secret, ip, last_authentication,"
                                         + " last_server, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,"
@@ -183,7 +183,7 @@ public abstract class LibreLoginSQLDatabaseProvider
                             connection.prepareStatement(
                                     "INSERT "
                                             + getIgnoreSyntax()
-                                            + " INTO librepremium_data(uuid, premium_uuid,"
+                                            + " INTO authentication(uuid, premium_uuid,"
                                             + " hashed_password, salt, algo, last_nickname, joined,"
                                             + " last_seen, secret, ip, last_authentication,"
                                             + " last_server, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?,"
@@ -223,7 +223,7 @@ public abstract class LibreLoginSQLDatabaseProvider
                 connection -> {
                     var ps =
                             connection.prepareStatement(
-                                    "UPDATE librepremium_data SET premium_uuid=?,"
+                                    "UPDATE authentication SET premium_uuid=?,"
                                             + " hashed_password=?, salt=?, algo=?, last_nickname=?,"
                                             + " joined=?, last_seen=?, secret=?, ip=?,"
                                             + " last_authentication=?, last_server=?, email=? WHERE"
@@ -269,7 +269,7 @@ public abstract class LibreLoginSQLDatabaseProvider
                 connection -> {
                     var ps =
                             connection.prepareStatement(
-                                    "DELETE FROM librepremium_data WHERE uuid=?");
+                                    "DELETE FROM authentication WHERE uuid=?");
 
                     ps.setString(1, user.getUuid().toString());
 
@@ -283,7 +283,7 @@ public abstract class LibreLoginSQLDatabaseProvider
                 connection -> {
                     connection
                             .prepareStatement(
-                                    "CREATE TABLE IF NOT EXISTS librepremium_data("
+                                    "CREATE TABLE IF NOT EXISTS authentication("
                                             + "uuid VARCHAR(255) NOT NULL PRIMARY KEY,"
                                             + "premium_uuid VARCHAR(255) UNIQUE,"
                                             + "hashed_password VARCHAR(255),"
@@ -306,32 +306,32 @@ public abstract class LibreLoginSQLDatabaseProvider
                     if (!columns.contains("secret"))
                         connection
                                 .prepareStatement(
-                                        "ALTER TABLE librepremium_data ADD COLUMN secret"
+                                        "ALTER TABLE authentication ADD COLUMN secret"
                                                 + " VARCHAR(255) NULL DEFAULT NULL")
                                 .executeUpdate();
                     if (!columns.contains("ip"))
                         connection
                                 .prepareStatement(
-                                        "ALTER TABLE librepremium_data ADD COLUMN ip VARCHAR(255)"
+                                        "ALTER TABLE authentication ADD COLUMN ip VARCHAR(255)"
                                                 + " NULL DEFAULT NULL")
                                 .executeUpdate();
                     if (!columns.contains("last_authentication"))
                         connection
                                 .prepareStatement(
-                                        "ALTER TABLE librepremium_data ADD COLUMN"
+                                        "ALTER TABLE authentication ADD COLUMN"
                                             + " last_authentication TIMESTAMP NULL DEFAULT NULL")
                                 .executeUpdate();
                     if (!columns.contains("last_server")) {
                         connection
                                 .prepareStatement(
-                                        "ALTER TABLE librepremium_data ADD COLUMN last_server"
+                                        "ALTER TABLE authentication ADD COLUMN last_server"
                                                 + " VARCHAR(255) NULL DEFAULT NULL")
                                 .executeUpdate();
                     }
                     if (!columns.contains("email")) {
                         connection
                                 .prepareStatement(
-                                        "ALTER TABLE librepremium_data ADD COLUMN email"
+                                        "ALTER TABLE authentication ADD COLUMN email"
                                                 + " VARCHAR(255) NULL DEFAULT NULL")
                                 .executeUpdate();
                     }

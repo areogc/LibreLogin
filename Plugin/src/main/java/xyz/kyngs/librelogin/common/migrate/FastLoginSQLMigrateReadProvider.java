@@ -139,7 +139,7 @@ public class FastLoginSQLMigrateReadProvider extends SQLMigrateReadProvider {
                                     connection2 -> {
                                         var ps2 =
                                                 connection2.prepareStatement(
-                                                        "UPDATE librepremium_data SET"
+                                                        "UPDATE authentication SET"
                                                                 + " premium_uuid=? WHERE"
                                                                 + " last_nickname=?");
                                         ps2.setString(1, premiumUUID.toString());

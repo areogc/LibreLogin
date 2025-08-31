@@ -26,7 +26,7 @@ public class LibreLoginMySQLDatabaseProvider extends LibreLoginSQLDatabaseProvid
                 connection
                         .prepareStatement(
                                 "SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS WHERE"
-                                        + " TABLE_NAME='librepremium_data' and TABLE_SCHEMA='"
+                                        + " TABLE_NAME='authentication' and TABLE_SCHEMA='"
                                         + ((AuthenticMySQLDatabaseConnector) connector)
                                                 .get(
                                                         AuthenticMySQLDatabaseConnector
@@ -49,6 +49,6 @@ public class LibreLoginMySQLDatabaseProvider extends LibreLoginSQLDatabaseProvid
 
     @Override
     protected String addUnique(String column) {
-        return "CREATE UNIQUE INDEX %s_index ON librepremium_data(%s)".formatted(column, column);
+        return "CREATE UNIQUE INDEX %s_index ON authentication(%s)".formatted(column, column);
     }
 }
