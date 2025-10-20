@@ -109,8 +109,12 @@ public class VelocityLibreLogin extends AuthenticLibreLogin<Player, RegisteredSe
                                                 result.getAttemptedConnection()
                                                         .getServerInfo()
                                                         .getName())) return;
-                                if (throwable != null || !result.isSuccessful())
-                                    player.disconnect(Component.text("Unable to connect"));
+                                if (throwable != null || !result.isSuccessful()) {
+                                    var reason =
+                                            result.getReasonComponent()
+                                                    .orElse(Component.text("Unable to connect"));
+                                    player.disconnect(reason);
+                                }
                             });
         } catch (EventCancelledException ignored) {
         }
